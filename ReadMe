@@ -1,0 +1,2 @@
+Frontend: Use npm start to start the React development server.
+Backend: Use node server.js or use a tool like nodemon for automatic restarts (npm install -g nodemon and run nodemon server.js).

@@ -1,0 +1,19 @@
+{
+  "name": "hotel-app",
+  "version": "1.0.0",
+  "description": "Frontend: Use npm start to start the React development server.\r Backend: Use node server.js or use a tool like nodemon for automatic restarts (npm install -g nodemon and run nodemon server.js).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.24.7",
+    "@babel/core": "^7.24.7",
+    "@babel/preset-env": "^7.24.7",
+    "@babel/preset-react": "^7.24.7",
+    "live-server": "^1.2.2"
+  }
+}
