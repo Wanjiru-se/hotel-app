@@ -3,9 +3,10 @@ body {
   background-image: url('./img/hotel-bg.jpg');
   background-repeat: no-repeat;
   background-size: cover; /* Cover the entire body of the page */
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
 
-/* main.css */
 .App-header {
   display: flex;
   flex-direction: column;
@@ -18,17 +19,22 @@ nav {
   display: flex;
   justify-content: space-around;
   padding: 10px;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for nav */
+  color: white;
 }
 
 nav ul {
   display: flex;
   list-style: none;
   gap: 20px;
+  padding: 0;
+  margin: 0;
 }
 
 nav ul li a {
   text-decoration: none;
-  color: inherit;
+  color: white;
+  font-weight: bold;
 }
 
 main {
@@ -47,50 +53,58 @@ button {
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
-  display: flexbox;
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow */
 }
 
-/* main.css */
 @media (max-width: 768px) {
   .App-header nav ul {
-     flex-direction: column;
-     align-items: center;
-   }
- 
+    flex-direction: column;
+    align-items: center;
+  }
+
   .App-header nav ul li {
-     margin-bottom: 10px;
-   }
-   
-   h1, h2, p {
-     font-size: 18px;
-   }
- 
-   button {
-     padding: 10px 20px;
-   }
- }
- 
-/* Form css */
+    margin-bottom: 10px;
+  }
+
+  h1, h2, p {
+    font-size: 18px;
+  }
+
+  button {
+    padding: 10px 20px;
+  }
+}
+
+/* Introduction Section */
 #introduction {
   padding: 50px;
   text-align: center;
   background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
 }
 
+/* Form CSS */
 form {
+  max-width: 400px;
+  padding: 30px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Add shadow */
   display: flex;
   flex-direction: column;
-  max-width: 400px;
-  margin: auto;
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+  margin: auto; /* Center horizontally */
+  margin-top: 100px; /* Adjust vertical margin */
 }
 
 form input,
 form textarea {
-  margin-bottom: 10px;
-  padding: 10px;
+  margin-bottom: 20px; /* Increase space between form elements */
+  padding: 15px; /* Increase padding */
   border-radius: 5px;
   border: 1px solid #ccc;
 }
@@ -99,11 +113,13 @@ form button {
   background-color: #61dafb;
   border: none;
   color: white;
-  padding: 10px 20px;
+  padding: 15px 20px; /* Increase padding */
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin-top: 10px;
+  margin-top: 20px; /* Increase margin */
   cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow */
 }
