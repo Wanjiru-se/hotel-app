@@ -1,2 +1,58 @@
+App guidelines
+
 Frontend: Use npm start to start the React development server.
 Backend: Use node server.js or use a tool like nodemon for automatic restarts (npm install -g nodemon and run nodemon server.js).
+
+Github guidelines
+
+If You Want to Save and Complete the Commit
+Write the Commit Message:
+If you haven't already, write your commit message at the top of the file.
+
+Save and Exit the Editor:
+If you're using Vim:
+
+Press Esc to ensure you are in normal mode.
+Type :wq (colon, w, q) and press Enter to write the changes and quit.
+If You Want to Abort the Commit
+Exit Without Saving:
+If you decide not to proceed with the commit, you can exit without saving.
+Press Esc to ensure you are in normal mode.
+Type :q! (colon, q, exclamation mark) and press Enter to quit without saving the commit.
+Resolving the Divergence Issue
+After dealing with the commit message, you mentioned that your branch and origin/main have diverged. This means that your local branch and the remote branch both have unique commits that the other doesn't have. To resolve this, you'll need to synchronize your branches.
+
+Fetch the Latest Changes:
+
+bash
+Copy code
+git fetch origin
+Rebase Your Changes:
+Rebase your commits on top of the latest commits from origin/main. This replays your changes on top of the remote changes.
+
+bash
+Copy code
+git rebase origin/main
+If there are conflicts, Git will pause and allow you to resolve them. After resolving, use git add to mark the conflicts as resolved, then continue the rebase with:
+bash
+Copy code
+git rebase --continue
+Push Your Changes:
+After a successful rebase, you can push your changes.
+
+bash
+Copy code
+git push origin main --force
+The --force option is needed because rebasing rewrites commit history, and you need to overwrite the remote branch.
+
+Summary of Steps
+Write and Save the Commit Message:
+
+Write the commit message.
+Save and exit with :wq.
+Synchronize with the Remote Branch:
+
+Fetch remote changes: git fetch origin.
+Rebase your changes: git rebase origin/main.
+Resolve any conflicts and continue: git rebase --continue.
+Push your changes with force: git push origin main --force.
