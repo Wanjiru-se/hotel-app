@@ -1,7 +1,15 @@
 App guidelines
 
+<<<<<<< HEAD
 Frontend: Use npm start to start the React development server.
 Backend: Use node server.js or use a tool like nodemon for automatic restarts (npm install -g nodemon and run nodemon server.js).
+=======
+'git init' if any issues arise
+
+Frontend: Use npm start to start the React development server.
+Backend: "node server.js" Use node server.js or use a tool like nodemon for automatic restarts (npm install -g nodemon and run nodemon server.js).
+
+> > > > > > > ecf5d17 (CreateMember works)
 
 Github guidelines
 
@@ -56,3 +64,29 @@ Fetch remote changes: git fetch origin.
 Rebase your changes: git rebase origin/main.
 Resolve any conflicts and continue: git rebase --continue.
 Push your changes with force: git push origin main --force.
+
+TABLES
+
+CREATE TABLE members (
+id INT AUTO_INCREMENT PRIMARY KEY,
+username VARCHAR(255) NOT NULL,
+password VARCHAR(255) NOT NULL,
+email VARCHAR(255) NOT NULL,
+phone_number VARCHAR(20)
+);
+
+CREATE TABLE rooms (
+id INT AUTO_INCREMENT PRIMARY KEY,
+type VARCHAR(255) NOT NULL,
+price DECIMAL(10, 2) NOT NULL
+);
+
+CREATE TABLE reservations (
+id INT AUTO_INCREMENT PRIMARY KEY,
+member_id INT,
+room_id INT,
+check_in_date DATE,
+check_out_date DATE,
+FOREIGN KEY (member_id) REFERENCES members(id),
+FOREIGN KEY (room_id) REFERENCES rooms(id)
+);
