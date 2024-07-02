@@ -1,17 +1,15 @@
 App guidelines
 
-<<<<<<< HEAD
-Frontend: Use npm start to start the React development server.
-Backend: Use node server.js or use a tool like nodemon for automatic restarts (npm install -g nodemon and run nodemon server.js).
-=======
-'git init' if any issues arise
-
 Frontend: Use npm start to start the React development server.
 Backend: "node server.js" Use node server.js or use a tool like nodemon for automatic restarts (npm install -g nodemon and run nodemon server.js).
 
 > > > > > > > ecf5d17 (CreateMember works)
 
 Github guidelines
+
+'git init' if any issues arise
+'git commit -m "your_message"' for commiting
+'git remote add origin https://github.com/beanware/hotel-app.git' in case of any origin errors
 
 If You Want to Save and Complete the Commit
 Write the Commit Message:
@@ -88,5 +86,21 @@ room_id INT,
 check_in_date DATE,
 check_out_date DATE,
 FOREIGN KEY (member_id) REFERENCES members(id),
-FOREIGN KEY (room_id) REFERENCES rooms(id)
+FOREIGN KEY (room_id) REFERENCES rooms(id),
+CONSTRAINT no_double_booking
+CHECK (
+NOT EXISTS (
+SELECT 1 FROM reservations r
+WHERE r.room_id = room_id
+AND (
+(check_in_date BETWEEN r.check_in_date AND r.check_out_date)
+OR
+(check_out_date BETWEEN r.check_in_date AND r.check_out_date)
+OR
+(r.check_in_date BETWEEN check_in_date AND check_out_date)
+OR
+(r.check_out_date BETWEEN check_in_date AND check_out_date)
+)
+)
+)
 );

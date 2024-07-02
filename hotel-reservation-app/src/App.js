@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
 import './App.css';
 import LoginPage from './pages/login';
+import RoomReservation from './pages/RoomReservation';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -22,7 +23,9 @@ function App() {
                 <section id="home">
                   <h1>Welcome to Los Hermanos Hotel</h1>
                   <p>A place where comfort meets luxury.</p>
-                  <button><Link to="/rooms">Book now</Link></button>
+                  <Link to="/rooms">
+            <button type="button" className="book-now-button">Book now</button>
+        </Link>
                 </section>
                 <hr />
                 <section id="introduction">
@@ -31,7 +34,7 @@ function App() {
                 </section>
               </div>
             } />
-            <Route path="/rooms" element={<div>{/* Add content for rooms */}</div>} />
+            <Route path="/rooms" element={user ? <RoomReservation /> : <LoginPrompt />} />
             <Route path="/contact" element={
               <section id="contact">
                 <form>
@@ -77,6 +80,15 @@ function Header({ user, setUser }) {
         </ul>
       </nav>
     </header>
+  );
+}
+
+function LoginPrompt() {
+  return (
+    <section id="login-prompt">
+      <h2>You must be logged in to book a room</h2>
+      <Link to="/login">Login</Link>
+    </section>
   );
 }
 

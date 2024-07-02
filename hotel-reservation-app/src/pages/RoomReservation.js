@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 
 const RoomReservation = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    checkInDate: '',
-    checkOutDate: ''
+    member_id: '',
+    room_id: '',
+    check_in_date: '',
+    check_out_date: ''
   });
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
   const handleChange = (e) => {
     setFormData({
@@ -19,8 +21,7 @@ const RoomReservation = () => {
     e.preventDefault();
     console.log('Form submitted:', formData);
 
-    // Send form data to the backend
-    fetch('http://localhost:5000/rooms', {
+    fetch('http://localhost:5000/reservations', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -29,61 +30,72 @@ const RoomReservation = () => {
     })
     .then(response => response.json())
     .then(data => {
-      console.log('Success:', data);
-      setFormData({
-        name: '',
-        email: '',
-        checkInDate: '',
-        checkOutDate: ''
-      });
+      if (data.error) {
+        setErrorMessage(data.error);
+        setSuccessMessage('');
+      } else {
+        console.log('Success:', data);
+        setFormData({
+          member_id: '',
+          room_id: '',
+          check_in_date: '',
+          check_out_date: ''
+        });
+        setErrorMessage('');
+        setSuccessMessage('Reservation made successfully');
+      }
     })
     .catch((error) => {
       console.error('Error:', error);
+      setErrorMessage('An error occurred while making the reservation.');
+      setSuccessMessage('');
     });
   };
 
   return (
     <section id="room-reservation">
       <form onSubmit={handleSubmit}>
-      <h2>Room Reservation</h2>
+        <h2>Room Reservation</h2>
+        {errorMessage && <p className="error">{errorMessage}</p>}
+        {successMessage && <p className="success">{successMessage}</p>}
         <div>
-          <label htmlFor="name">Name: </label>
+          <label htmlFor="member_id">Member ID: </label>
           <input
             type="text"
-            name="name"
-            placeholder="Name"
-            value={formData.name}
+            name="member_id"
+            placeholder="Member ID"
+            value={formData.member_id}
             onChange={handleChange}
             required
           />
         </div>
         <div>
-          <label htmlFor="email">Email: </label>
+          <label htmlFor="room_id">Room ID: </label>
           <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={formData.email}
+            type="text"
+            name="room_id"
+            placeholder="Room ID"
+            value={formData.room_id}
             onChange={handleChange}
             required
           />
         </div>
         <div>
-          <label htmlFor="checkInDate">Check-In Date: </label>
-          <input
-            type="date"
-            name="checkInDate"
-            value={formData.checkInDate}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="checkOutDate">Check-Out Date: </label>
+          <label htmlFor="check_in_date">Check-In Date: </label>
           <input
             type="date"
-            name="checkOutDate"
-            value={formData.checkOutDate}
+            name="check_in_date"
+            value={formData.check_in_date}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="check_out_date">Check-Out Date: </label>
+          <input
+            type="date"
+            name="check_out_date"
+            value={formData.check_out_date}
             onChange={handleChange}
             required
           />
